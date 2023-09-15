@@ -8,5 +8,7 @@ public class CoinClient {
             myCoin.flip();
             System.out.println("After flip: " + myCoin);
         }
+
+        System.out.println("Done!");
     }
 }
