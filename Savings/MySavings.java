@@ -13,7 +13,7 @@ public class MySavings {
       Scanner input = new Scanner(System.in);
       PiggyBank mySavings = new PiggyBank();
       int choice = 0;
-      while (choice != 6) {
+      while (choice != 7) {
          System.out.println("1. Enter pennies");
          System.out.println("2. Enter nickels");
          System.out.println("3. Enter dimes");
@@ -38,7 +38,7 @@ public class MySavings {
             int dimes = input.nextInt();
             mySavings.addDimes(dimes);
             System.out.println("You have " + mySavings.getDimes() + " dimes in your piggy bank.");
-         } else if (choice == 4) {
+         } else if (choice == 4) { 
             System.out.print("Enter the number of quarters: ");
             int quarters = input.nextInt();
             mySavings.addQuarters(quarters);
