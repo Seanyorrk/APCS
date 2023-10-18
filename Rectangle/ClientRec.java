@@ -54,8 +54,41 @@ public class ClientRec {
         return "Length: " + length + "\nWidth: " + width;
     }
     
+
+   //add a comparable interface to compare the height and width of the rectangle, if any of them are the same, return return 0, if spot1 is smaller than spot2, return 1, if spot1 is bigger than spot2, return -1
+
+    public int compare(ClientRec c) {
+        if (this.length == c.length || this.width == c.width) {
+            return 0;
+        } else if (this.length < c.length || this.width < c.width) {
+            return 1;
+        } else {
+            return -1;
+        }
+
+        
+    }
+    
+
+    //add a compareTo method to compare the area of the rectangle
+
+    public interface ComparableArea {
+        int compareToArea(Object obj);
+ }
+
+    public int compareTo(ClientRec c) {
+        if (this.length * this.width == c.length * c.width) {
+            return 0;
+        } else if (this.length * this.width < c.length * c.width) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
     
 
 
 
 }
+
+// Path: Rectangle/Rectangle.java
