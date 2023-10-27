@@ -2,6 +2,8 @@
 
 package Namebackwards;
 import java.util.Scanner;
+
+
 public class Namebackwards {
     public static void main(String[] args) {
         //ask user for his or her name
@@ -14,6 +16,6 @@ public class Namebackwards {
         for (int i = nameLetters.length - 1; i >= 0; i--) {
             System.out.print(nameLetters[i]);
         }
-        
+        input.close();
     }
 }

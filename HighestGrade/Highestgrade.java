@@ -15,7 +15,7 @@ public class Highestgrade {
                 highest = grades[i];
             }
         }
-        System.out.println("Highest grade is " + highest);
+        System.out.println("Highest grade is " + highest);input.close();
     }
     
 }

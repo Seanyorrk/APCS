@@ -1,5 +1,4 @@
 package Carnival;
-import java.text.NumberFormat;
 
 public class Player {
 	private double spendingMoney;

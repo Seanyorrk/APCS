@@ -27,6 +27,6 @@ public class CountLetter {
         for (int i = LOW; i <= HIGH; i++) {
             System.out.println((char) i + ": " + letterCounts[i - LOW]);
 
-        }
+        }input.close();
     }
 }

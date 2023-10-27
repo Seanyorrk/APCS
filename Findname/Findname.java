@@ -19,7 +19,7 @@ public class Findname {
             System.out.println(nameToFind + " not found.");
         } else {
             System.out.println(nameToFind + " found at index " + index + ".");
-        }
+        }input.close();
     }
 
     public static int linear(String[] arr, String key) {

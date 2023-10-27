@@ -21,18 +21,17 @@ public class Music {
         instrumentChoice = input.nextLine();
         System.out.print("Enter the band member's name: ");
         String name = input.nextLine();
-        if (instrumentChoice.equalsIgnoreCase("V")) {
+        if (instrumentChoice.equalsIgnoreCase("V")) {input.close();
             return (new Vocal(name));
-        } else if (instrumentChoice.equalsIgnoreCase("P")) {
+        } else if (instrumentChoice.equalsIgnoreCase("P")) {input.close();
             return (new Piccolo(name));
-        } else if (instrumentChoice.equalsIgnoreCase("T")) {
+        } else if (instrumentChoice.equalsIgnoreCase("T")) {input.close();
             return (new Tuba(name));
-        } else if (instrumentChoice.equalsIgnoreCase("TR")) {
+        } else if (instrumentChoice.equalsIgnoreCase("TR")) {input.close();
             return (new Trumpet(name));
-        }else {
+        }else {input.close();
             return (new Clarinet(name));
         }
-
     }
 
     public static void main(String[] args) {
@@ -69,5 +68,7 @@ public class Music {
             System.out.print("\nWould you like to hear a Solo, a Duet, a Trio, a Quartet or Leave? ");
             performanceChoice = input.nextLine();
         }
+
+        input.close();
     }
 }

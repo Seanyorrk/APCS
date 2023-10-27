@@ -30,6 +30,6 @@ public class ClientBank {
 		System.out.print("Enter withdrawal amount: ");
 		data = input.nextDouble();
 		munozAccount.withdrawal(data);
-		System.out.println("Balance is: " + money.format(munozAccount.getBalance()));		
+		System.out.println("Balance is: " + money.format(munozAccount.getBalance()));	input.close();	
     }   
 }
