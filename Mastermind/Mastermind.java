@@ -3,7 +3,7 @@ package Mastermind;
 import java.util.Scanner;
 
 public class Mastermind {
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         Scanner input =  new Scanner(System.in);
 
         //get user input for the number of pegs and colors
