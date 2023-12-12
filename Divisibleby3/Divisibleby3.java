@@ -1,4 +1,5 @@
-package Riddle;
+package Divisibleby3;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -6,51 +7,51 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
+import javax.swing.*;
 
-public class Riddle {
+public class Divisibleby3 {
     JFrame frame;
     JLabel label;
     JLabel answer;
     JPanel contentpane;
     JButton button;
+    JTextField textfield;
 
-    public Riddle () {
+    public Divisibleby3() {
 
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         contentpane = new JPanel();
-        contentpane.setLayout(new GridLayout(2,2,10,10)); // Use GridLayout manager with 3 rows and 1 column
+        contentpane.setLayout(new GridLayout(3, 1, 0, 10)); // Use GridLayout manager with 3 rows and 1 column
 
-        label = new JLabel("Why did the chicken cross the road?");
+        label = new JLabel("Enter an integer:");
         contentpane.add(label);
 
-        answer = new JLabel("To get to the other side");
+        answer = new JLabel("Yes");
         answer.setVisible(false); // Hide the answer label initially
         contentpane.add(answer);
+        
 
-        button = new JButton("Answer");
+        textfield = new JTextField();
+        contentpane.add(textfield);
 
+        button = new JButton("Check");
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                int num = Integer.parseInt(textfield.getText());
+                if (num % 3 == 0) {
+                    answer.setText("Yes");
+                } else {
+                    answer.setText("No");
+                }
                 answer.setVisible(true); // Show the answer label when the button is pressed
             }
         });
-
         contentpane.add(button);
-
         frame.setContentPane(contentpane);
-
         frame.pack();
-
         frame.setVisible(true);
-
-
-    }
-
-    private static void createAndShowGUI() {
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        new Riddle();
     }
 
     public static void main(String[] args) {
@@ -59,7 +60,10 @@ public class Riddle {
                 createAndShowGUI();
             }
         });
-
     }
 
+    public static void createAndShowGUI() {
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        new Divisibleby3();
+    }
 }
