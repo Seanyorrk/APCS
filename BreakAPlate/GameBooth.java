@@ -1,16 +1,14 @@
-package Carnival;
+package BreakAPlate;
+
+/**
+ * GameBooth class
+ */
+ 
 import java.lang.Math;
-import java.util.Random;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-import java.awt.GridLayout;
 
-
-public class Gamebooth {
+public class GameBooth {
 	private double cost;
 	private String firstPrize, consolationPrize;
-	private int firstPrizesAwarded, conPrizesAwarded;
 		
 	
 	/**
@@ -18,19 +16,10 @@ public class Gamebooth {
 	 * pre: none
 	 * post: A GameBooth object created. The cost and prizes are set.
 	 */
-	public Gamebooth(double charge, String p1, String p2) {
+	public GameBooth(double charge, String p1, String p2) {
 		cost = charge;
 		firstPrize = p1;
 		consolationPrize = p2;
-		firstPrizesAwarded = 0;
-		conPrizesAwarded = 0;
-		JFrame frame;
-		JLabel plate1;
-		JLabel plate2;
-		JLabel plate3;
-		JPanel contentpane;
-		JButton playGame;
-
 	}
 	
 
@@ -51,31 +40,27 @@ public class Gamebooth {
 	 		if (toss == 1) {
 	 			successes += 1;			//a successful toss is equal to 1
 	 		}
-			
 	 	}
-
-		if (successes == 3) {
-				firstPrizesAwarded += 1;
-				return(firstPrize);
-			} else {
-				conPrizesAwarded += 1;
-				return(consolationPrize);
-			}
+	 	
+	 	/* award prize */
+	 	if (successes == 3) {
+	 		return(firstPrize);
+	 	} else {
+	 		return(consolationPrize);
+	 	}
 	}
 
 
 	/** 
-	 * Returns the cost to play the game.
+	 * Returns the cost to  play the game.
 	 * pre: none
 	 * post: Cost of the game has been returned.
 	 */
-	public double firstPrizesAwarded() {
-	 	return(firstPrizesAwarded);
-	}
-	public double conPrizesAwarded() {
-	 	return(conPrizesAwarded);
-	}
 	public double getCost() {
 	 	return(cost);
 	}
+
 }
+
+
+

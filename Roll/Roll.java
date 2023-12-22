@@ -1,8 +1,11 @@
 package Roll;
 import javax.swing.*;
+
+
 import java.awt.event.*;
 import java.awt.GridLayout;
 import java.util.Random;
+import java.awt.color.*;
 
 
 public class Roll {
@@ -18,17 +21,17 @@ public class Roll {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         contentpane = new JPanel();
-        contentpane.setLayout(new GridLayout(10,10,10,10)); // Use GridLayout manager with 3 rows and 1 column
-
+        contentpane.setLayout(new GridLayout(3,0,10,100)); // Use GridLayout manager with 3 rows and 1 column
+        contentpane.setBackground(new java.awt.Color(128, 0, 128));
 
         dieFace1 = new JLabel(new ImageIcon("die1.gif"));
         dieFace1.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        dieFace1.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
+        dieFace1.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
         contentpane.add(dieFace1);
 
         dieFace2 = new JLabel(new ImageIcon("die1.gif"));
         dieFace2.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-        dieFace2.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 10));
+        dieFace2.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
         contentpane.add(dieFace2);
 
         rollDie = new JButton("Roll");

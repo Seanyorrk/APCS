@@ -1,55 +1,123 @@
 package GameofLight;
 
-import java.util.Scanner;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameofLight {
-    
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
 
-        System.out.println("Welcome to the Game of Light! A grid size of your choosing will being by being populated with all 'O's (off). You will choose a cell based on the row and column. That cell and the surrounding cells (up, down, left, right) will switch from 'O' to 'L' of vice versa. YOu win the game when all the cells are 'L' (lit) Good luck!");
-        //ask player to enter size of the grid
-        int size = 0;
-        while (size < 3 || size > 9) {
-            System.out.print("Enter the size of the grid (3-9): ");
-            size = input.nextInt();
-            if (size < 3 || size > 9) {
-                System.out.println("Invalid size. Try again.");
+    JFrame frame;
+    JPanel panel;
+    JButton[][] buttons;
+    int rows, cols;
+
+    public GameofLight() {
+        frame = new JFrame("Game of Light");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 500);
+
+        // create a content pane with a grid layout and empty borders
+        // ask player to enter size of the grid
+        // ask player to enter size of the grid and use a text field to get the input
+        JTextField rowField = new JTextField(5);
+        JTextField colField = new JTextField(5);
+        JPanel rowPanel = new JPanel();
+        rowPanel.add(new JLabel("Enter the number of rows: "));
+        rowPanel.add(rowField);
+        JPanel colPanel = new JPanel();
+        colPanel.add(new JLabel("Enter the number of columns: "));
+        colPanel.add(colField);
+        int result = JOptionPane.showConfirmDialog(null, rowPanel, "Enter the number of rows",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            rows = Integer.parseInt(rowField.getText());
+        }
+        result = JOptionPane.showConfirmDialog(null, colPanel, "Enter the number of columns",
+                JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            cols = Integer.parseInt(colField.getText());
+        }
+
+        panel = new JPanel();
+        panel.setLayout(new GridLayout(rows, cols, 5, 5));
+        panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        // create a 2D array of buttons and all their properties in nested for loops
+
+        class ButtonListener implements ActionListener {
+            public void actionPerformed(ActionEvent e) {
+                JButton button = (JButton) e.getSource();
+                String actionCommand = button.getActionCommand();
+                int row = Integer.parseInt(actionCommand.split(",")[0]);
+                int col = Integer.parseInt(actionCommand.split(",")[1]);
+
+                // Check if the clicked cell is already white
+                if (buttons[row][col].getBackground() == Color.WHITE) {
+                    // Change the clicked cell and surrounding cells to black
+                    buttons[row][col].setBackground(Color.BLACK);
+                    if (row > 0) {
+                        buttons[row - 1][col].setBackground(Color.BLACK);
+                    }
+                    if (row < buttons.length - 1) {
+                        buttons[row + 1][col].setBackground(Color.BLACK);
+                    }
+                    if (col > 0) {
+                        buttons[row][col - 1].setBackground(Color.BLACK);
+                    }
+                    if (col < buttons[row].length - 1) {
+                        buttons[row][col + 1].setBackground(Color.BLACK);
+                    }
+                } else {
+                    // Change the clicked cell and surrounding cells to white
+                    buttons[row][col].setBackground(Color.WHITE);
+                    if (row > 0) {
+                        buttons[row - 1][col].setBackground(Color.WHITE);
+                    }
+                    if (row < buttons.length - 1) {
+                        buttons[row + 1][col].setBackground(Color.WHITE);
+                    }
+                    if (col > 0) {
+                        buttons[row][col - 1].setBackground(Color.WHITE);
+                    }
+                    if (col < buttons[row].length - 1) {
+                        buttons[row][col + 1].setBackground(Color.WHITE);
+                    }
+                } 
             }
         }
 
-        //populate the grid with 'O'
-        char[][] grid = new char[size][size];
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j <grid[i].length; j++) {
-                grid[i][j] = 'O';
+        // play the game
+
+
+
+        buttons = new JButton[rows][cols];
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons[i].length; j++) {
+                buttons[i][j] = new JButton();
+                buttons[i][j].setText("O");
+                buttons[i][j].setBackground(Color.BLACK);
+                buttons[i][j].setForeground(Color.WHITE);
+                buttons[i][j].setOpaque(true);
+                buttons[i][j].setBorderPainted(false);
+                buttons[i][j].setActionCommand(i + "," + j);
+                buttons[i][j].addActionListener(new ButtonListener());
+                panel.add(buttons[i][j]);
             }
         }
 
-        //play the game
-        boolean won = false;
-        while (!won) {
-            //print the grid
-            for (int i = 0; i < grid.length; i++) {
-                for (int j = 0; j <grid[i].length; j++) {
-                    System.out.print(grid[i][j] + " ");
-                }
-                System.out.println();
-            }
+        // add the panel to the frame
+            int row = 0; // Add this line to declare and initialize the variable row
+            int col = 0; // Add this line to declare and initialize the variable col
+            char[][] grid = new char[rows][cols]; // Declare the variable grid as a 2D array of characters
 
-            //ask the player to choose a cell to click
-            int row = 0;
-            int col = 0;
-            while (row < 1 || row > size || col < 1 || col > size) {
-                System.out.print("Enter the row and column to click (1-" + size + "): ");
-                row = input.nextInt();
-                col = input.nextInt();
-                if (row < 1 || row > size || col < 1 || col > size) {
-                    System.out.println("Invalid row or column. Try again.");
-                }
-            }
+            frame.getContentPane().add(panel);
 
-            //change the clicked cell and surrounding cells
+            // display the frame
+            frame.pack();
+            frame.setVisible(true);
+
+            // change the clicked cell and surrounding cells
             row--;
             col--;
             if (grid[row][col] == 'O') {
@@ -82,24 +150,41 @@ public class GameofLight {
                         grid[row][col + 1] = 'O';
                     }
                 }
-            }
+              
 
-            //check if all cells are 'L'
-            won = true;
-            for (int i = 0; i < grid.length; i++) {
-                for (int j = 0; j <grid[i].length; j++) {
-                    if (grid[i][j] == 'O') {
-                        won = false;
-                    }
-                }
-                if (!won) {
-                    break;
-                }
-            } 
-            if (won) {
-                System.out.println("You won!");
+            // add game logic here
+            boolean gameWon = checkGameWon();
+            if (gameWon) {
+                JOptionPane.showMessageDialog(null, "You won!");
             }
         }
-        input.close();
+        }
+
+        private boolean checkGameWon() {
+            // Add your game winning logic here
+            return false;
+        }
+
+
+    
+
+
+
+    private static void runGUI() {
+        JFrame.setDefaultLookAndFeelDecorated(true);
+
+        new GameofLight();
+    }
+
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                runGUI();
+               
+
+            }
+
+        });
+
     }
 }
