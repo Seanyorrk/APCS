@@ -180,7 +180,6 @@ public class GameofLight {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 runGUI();
-               
 
             }
 
