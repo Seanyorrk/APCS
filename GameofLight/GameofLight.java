@@ -17,6 +17,7 @@ public class GameofLight {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
 
+
         // create a content pane with a grid layout and empty borders
         // ask player to enter size of the grid
         // ask player to enter size of the grid and use a text field to get the input
@@ -39,11 +40,14 @@ public class GameofLight {
             cols = Integer.parseInt(colField.getText());
         }
 
+
         panel = new JPanel();
         panel.setLayout(new GridLayout(rows, cols, 5, 5));
         panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
+
         // create a 2D array of buttons and all their properties in nested for loops
+
 
         class ButtonListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
@@ -51,6 +55,7 @@ public class GameofLight {
                 String actionCommand = button.getActionCommand();
                 int row = Integer.parseInt(actionCommand.split(",")[0]);
                 int col = Integer.parseInt(actionCommand.split(",")[1]);
+
 
                 // Check if the clicked cell is already white
                 if (buttons[row][col].getBackground() == Color.WHITE) {
@@ -83,15 +88,65 @@ public class GameofLight {
                     if (col < buttons[row].length - 1) {
                         buttons[row][col + 1].setBackground(Color.WHITE);
                     }
-                } 
+                }
+                 // Check if the clicked cell is already white
+        if (buttons[row][col].getBackground() == Color.WHITE) {
+            // Change the clicked cell to black
+            buttons[row][col].setBackground(Color.BLACK);
+
+
+            // Change surrounding cells to white if they are black
+            if (row > 0 && buttons[row - 1][col].getBackground() == Color.BLACK) {
+                buttons[row - 1][col].setBackground(Color.WHITE);
+            }
+            if (row < buttons.length - 1 && buttons[row + 1][col].getBackground() == Color.BLACK) {
+                buttons[row + 1][col].setBackground(Color.WHITE);
+            }
+            if (col > 0 && buttons[row][col - 1].getBackground() == Color.BLACK) {
+                buttons[row][col - 1].setBackground(Color.WHITE);
+            }
+            if (col < buttons[row].length - 1 && buttons[row][col + 1].getBackground() == Color.BLACK) {
+                buttons[row][col + 1].setBackground(Color.WHITE);
+            }
+        } else {
+            // Change the clicked cell to white
+            buttons[row][col].setBackground(Color.WHITE);
+
+
+            // Change surrounding cells to black if they are white
+            if (row > 0 && buttons[row - 1][col].getBackground() == Color.WHITE) {
+                buttons[row - 1][col].setBackground(Color.BLACK);
             }
         }
+
 
         // play the game
 
 
 
-        buttons = new JButton[rows][cols];
+
+
+
+       
+    }
+
+
+
+
+   
+
+
+
+
+
+
+   
+
+
+   
+}
+
+ buttons = new JButton[rows][cols];
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 buttons[i][j] = new JButton();
@@ -106,16 +161,21 @@ public class GameofLight {
             }
         }
 
+
         // add the panel to the frame
-            int row = 0; // Add this line to declare and initialize the variable row
-            int col = 0; // Add this line to declare and initialize the variable col
+            // Remove the duplicate declaration and initialization of the variable row
+            // int row = 0;
+           // int col = 0; // Add this line to declare and initialize the variable col
             char[][] grid = new char[rows][cols]; // Declare the variable grid as a 2D array of characters
 
+
             frame.getContentPane().add(panel);
+
 
             // display the frame
             frame.pack();
             frame.setVisible(true);
+
 
             // change the clicked cell and surrounding cells
             row--;
@@ -150,7 +210,8 @@ public class GameofLight {
                         grid[row][col + 1] = 'O';
                     }
                 }
-              
+             
+
 
             // add game logic here
             boolean gameWon = checkGameWon();
@@ -160,15 +221,11 @@ public class GameofLight {
         }
         }
 
+
         private boolean checkGameWon() {
             // Add your game winning logic here
             return false;
         }
-
-
-    
-
-
 
     private static void runGUI() {
         JFrame.setDefaultLookAndFeelDecorated(true);
