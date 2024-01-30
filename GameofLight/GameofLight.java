@@ -178,38 +178,7 @@ public class GameofLight {
 
 
             // change the clicked cell and surrounding cells
-            row--;
-            col--;
-            if (grid[row][col] == 'O') {
-                grid[row][col] = 'X';
-                if (row > 0) {
-                    if (grid[row - 1][col] == 'O') {
-                        grid[row - 1][col] = 'X';
-                    } else {
-                        grid[row - 1][col] = 'O';
-                    }
-                }
-                if (row < grid.length - 1) {
-                    if (grid[row + 1][col] == 'O') {
-                        grid[row + 1][col] = 'X';
-                    } else {
-                        grid[row + 1][col] = 'O';
-                    }
-                }
-                if (col > 0) {
-                    if (grid[row][col - 1] == 'O') {
-                        grid[row][col - 1] = 'X';
-                    } else {
-                        grid[row][col - 1] = 'O';
-                    }
-                }
-                if (col < grid[row].length - 1) {
-                    if (grid[row][col + 1] == 'O') {
-                        grid[row][col + 1] = 'X';
-                    } else {
-                        grid[row][col + 1] = 'O';
-                    }
-                }
+         
              
 
 
@@ -219,8 +188,8 @@ public class GameofLight {
                 JOptionPane.showMessageDialog(null, "You won!");
             }
         }
-        }
-
+        
+    
 
         private boolean checkGameWon() {
             // Add your game winning logic here
