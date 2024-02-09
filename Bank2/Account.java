@@ -52,6 +52,9 @@ public class Account  {
     * post: The account balance has been returned.
     */
    public double getBalance() {
+    if (balance <= 20) {
+        System.out.println("Low balance.");
+    }
         return(balance);
    }
 
@@ -63,7 +66,12 @@ public class Account  {
     */
    public void deposit(double amt) {
         balance += amt;
-   }
+
+        if (balance <= 20) {
+            System.out.println("Low balance.");
+        }
+    }
+        
 
    
    /** 
@@ -72,10 +80,16 @@ public class Account  {
     * post: The balance has been decreased by the amount withdrawn.
     */
    public void withdrawal(double amt) {
+    
         if (amt <= balance) {
             balance -= amt;
         } else {
             System.out.println("Not enough money in account.");
+
+        }
+
+        if (balance <= 20) {
+            System.out.println("Low balance.");
         }
    }
    
@@ -109,6 +123,10 @@ public class Account  {
        accountString = acctID + "\n";
        accountString += cust.toString();
        accountString += "Current balance is " + money.format(balance);
+      if (balance <= 20) {
+          accountString += "\nLow balance.";
+        }
         return(accountString);
    }
 }
+
