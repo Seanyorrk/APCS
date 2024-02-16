@@ -1,6 +1,9 @@
 package TestProcessor;
 import java.io.File;
+import java.io.FileReader;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import javax.annotation.processing.Filer;
 
 import HighestGrade.Highestgrade;
 
@@ -13,13 +16,15 @@ public class TestProcessor {
         File file = new File("I:\\APCS\\TestProcess.txt");
         //The first line in the file is the correct answer
         
-        try {
-            Scanner input = new Scanner(file);
-            String correctAnswer = input.nextLine();
-            String line;
-            while ((line = input.nextLine()) != null) {
-                String studentName = input.nextLine();
-                String studentAnswer = input.nextLine();
+        try (FileReader fileReader = new FileReader(file);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+
+            String correctAnswer = bufferedReader.readLine();
+            String studentName;
+            String studentAnswer;
+            while ((studentName = bufferedReader.readLine()) != null) {
+                studentAnswer = bufferedReader.readLine();
+                
                 score = 0;
                 for (int i = 0; i < min(correctAnswer.length(), studentAnswer.length()); i++) {
                     if (correctAnswer.charAt(i) == studentAnswer.charAt(i)) {
@@ -35,11 +40,10 @@ public class TestProcessor {
                 }
                 System.out.println("Student: " + studentName + ", Correct Answers: " + score + " out of " + correctAnswer.length() + " or " + (score / (double)correctAnswer.length() * 100) + "%");
             }
-            input.close();
         } catch (IOException e) {
             System.out.println("File not found");
         }
-    }
+        }
 
     public static int min(int a, int b) {
        if (a < b) {
@@ -49,3 +53,4 @@ public class TestProcessor {
        }
     }
 }
+
