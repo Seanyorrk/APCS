@@ -1,82 +1,77 @@
 package ApplicationDoc;
 
 import java.io.File;
-import java.util.Scanner;
 import java.io.FileWriter;
+import java.util.Scanner;
 
 public class ApplicationDocs {
     public static void main(String[] args) {
-       File base = new File("I:\\APCS\\ApplicationDoc\\Coder.txt");
-       Scanner scanner = new Scanner(System.in);
-         System.out.println("Enter the name of the file you want to create: ");
-            String fileName = scanner.nextLine();
+       
+        Scanner scanner = new Scanner(System.in);
 
-            File commentFile = new File("I:\\APCS\\ApplicationDoc\\" + fileName + ".txt");
+        System.out.println("Welcome to ApplicationDoc! Input the file name: ");
+        String fileName = scanner.next();
 
-            if (commentFile.exists()) {
-                try{
-                    Scanner fileScanner = new Scanner(commentFile);
+        File inputFile = new File("I:\\APCS\\" + fileName + ".txt");
+        
+        if (inputFile.exists()) {
+            try {
+                Scanner fileScanner = new Scanner(inputFile);
 
-                    String contents = "";
+                String documentations = "";
 
-                    boolean isInJavaDoc = false;
+                boolean isInJavadoc = false;
 
-                    while (fileScanner.hasNextLine()) {
-                        String line = fileScanner.nextLine();
+                while (fileScanner.hasNextLine()) {
+                    String line = fileScanner.nextLine();
 
-                        if(line.contains("/*") ){
-                            isInJavaDoc = true;
-                            line = line.replace("/**", "");
-                            line = line.replace("/*", "");
-                        }
-
-                        boolean isEnd = false;
-
-                        if(line.contains("*/")){
-                            isEnd = true;
-                            line = line.replace("*/", "");
-                        }
-
-                        if (isInJavaDoc) {
-                            String other = line.trim().replace("*", "");
-
-                            if(other.length() > 0){
-                                contents += other + "\n";
-                            }  
-                        }
-                        
+                    if (line.contains("/*")) {
+                        isInJavadoc = true;
+                        line = line.replace("/**", "");
+                        line = line.replace("/*", "");
                     }
 
-                            if (isEnd) {
-                                isInJavaDoc = false;
-                            }
-                        }
+                    boolean shouldClose = false;
 
-                        File outputFile = new File("I:\\APCS\\ApplicationDoc\\" + fileName + ".txt");
-
-                        if (outputFile.createNewFile()) {
-                            System.out.println("File created: " + outputFile.getName());
-                        } else {
-                            System.out.println("File already exists.");
-                        }
-
-                        FileWriter writer = new FileWriter(outputFile);
-
-                        writer.write(contents); // Fixed: FileWriter.write(contents) -> writer.write(contents)
-
-                        writer.close();
-
-                        fileScanner.close();
-                    } catch (Exception e) {
-                        // Handle exception
+                    if (line.contains("*/")) {
+                        shouldClose = true;
+                        line = line.replace("*/", "");
                     }
-                System.out.println("File not found");
-            }else
 
-    {
-        System.out.println("File not found");
+                    if (isInJavadoc) {
+                        String content = line.trim().replace("* ", "");
+
+                        if (content.length() > 0) {
+                            documentations += content + "\n";
+                        }
+                    }
+
+                    if (shouldClose) {
+                        isInJavadoc = false;
+                    }
+                }
+
+                File outputFile = new File("I:\\APCS\\ApplicationDoc\\" + fileName + "2.txt");
+
+                if (outputFile.createNewFile()) {
+                    System.out.println("File created: " + outputFile.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+
+                FileWriter fileWriter = new FileWriter(outputFile);
+                
+                fileWriter.write(documentations);
+                fileWriter.close();
+
+                fileScanner.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("File not found.");
+        }
+
+        scanner.close();
     }
-
-    scanner.close();
-
-}}
+}
