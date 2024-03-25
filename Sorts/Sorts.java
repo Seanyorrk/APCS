@@ -10,7 +10,7 @@ public class Sorts {
         System.out.println("Unsorted items: " + Arrays.toString(items));
 
         // Call any of the sorting methods here
-        mergesort(items, 0, items.length - 1);
+        // selectionSort(items);
         // insertionSort(items);
         // mergesort(items, 0, items.length - 1);
 
@@ -109,8 +109,7 @@ public class Sorts {
     }
 
     // Sorts an array of integers using Merge Sort
-    private static void merge(int[] items, int start,
-            int mid, int end) {
+    private static void merge(int[] items, int start, int mid, int end) {
         int[] temp = new int[items.length];
         int pos1 = start;
         int pos2 = mid + 1;
