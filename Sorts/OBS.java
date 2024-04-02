@@ -1,14 +1,14 @@
 
-package OBS;
+package Sorts;
 
 import java.util.Arrays;
 
-public class OBS {
+public class OBS{
 
     public static void main(String[] args) {
-        String[] array = { "apple", "banana", "cherry", "date", "elderberry" };
+        String[] array = { "apple", "banana", "cherry", "elderberry", "date" };
         Arrays.sort(array);
-        String target = "cherry";
+        String target = "elderberry";
         int index = Arrays.binarySearch(array, target);
         if (index >= 0) {
             System.out.println("Element found at index " + index);
@@ -18,3 +18,6 @@ public class OBS {
     }
 
 }
+
+
+

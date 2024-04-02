@@ -9,7 +9,7 @@ public class TestSearch {
             System.out.print(array[i] + " ");
 
         }
-        System.out.println("/n");
+        System.out.println();
 
     }
 
@@ -31,7 +31,7 @@ public class TestSearch {
         System.out.print("Enter the number to search for: ");
         searchNum = input.nextInt();
         while (searchNum != -1) {
-            location = Searches.ternarySearch(test, 0, test.length - 1, searchNum);
+            location = Searches.binarySearch2(test, 0, test.length - 1, searchNum);
             System.out.println("Number at position: " + location);
             System.out.print("Enter the number to search for (-1 to quit) ");
             searchNum = input.nextInt();

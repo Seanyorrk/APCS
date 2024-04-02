@@ -8,6 +8,7 @@ public class Searches {
             return (-1);
         } else {
             int mid = (start + end) / 2;
+            System.out.println("mid: " + mid);
             if (goal == items[mid]) {
                 return (mid);
             } else if (goal < items[mid]) {
@@ -18,6 +19,37 @@ public class Searches {
         }
     }
 
+    
+    public static int binarySearch(String[] items, int start, int end, String goal) {
+        if (start > end) {
+            return -1;
+        } else {
+            int mid = (start + end) / 2;
+            System.out.println("mid: " + mid);
+            int comparison = goal.compareTo(items[mid]);
+            if (comparison == 0) {
+                return mid;
+            } else if (comparison < 0) {
+                return binarySearch(items, start, mid - 1, goal);
+            } else {
+                return binarySearch(items, mid + 1, end, goal);
+            }
+        }
+    }
+    public static int binarySearch2(String[]items, int start, int end, String goal) {
+        int mid = (start + end) / 2;
+        if (start > end) {
+            return -1;
+        } else {
+            if(goal.compareTo(items[mid]) == 0) {
+                return mid;
+            } else if (goal.compareTo(items[mid]) < 0) {
+                return binarySearch(items, start, mid - 1, goal);
+            } else {
+                return binarySearch(items, mid + 1, end, goal);
+        }
+    }
+}   
     public static void main(String[] args) {
         String[] array = { "apple", "banana", "cherry", "date", "elderberry" };
         Arrays.sort(array);

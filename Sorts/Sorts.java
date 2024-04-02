@@ -91,8 +91,8 @@ public class Sorts {
         }
     }
 
-    public static <T extends Comparable<T>> void insertionSort(T[] items) {
-        T temp;
+    public static void insertionSort(String[] items) {
+        String temp;
         int previousIndex;
 
         for (int index = 1; index < items.length; index++) {

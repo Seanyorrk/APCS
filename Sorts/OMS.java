@@ -1,10 +1,10 @@
-package OMS;
+package Sorts;
 import java.util.Arrays;
 
 public class OMS {
     public static void main(String[] args) {
-        String[] arr = {"apple", "banana", "cherry", "date", "elderberry"};
-        mergeSort(arr, 0, arr.length - 1);
+        String[] arr = {"apple", "date", "banana", "elderberry", "cherry"};
+        Sorts.insertionSort(arr);
         System.out.println("Sorted array: " + Arrays.toString(arr));
     }
 
